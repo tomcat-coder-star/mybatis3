@@ -3,15 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <environments default="development">
+  <environments default="production">
     <environment id="development">
       <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
+      <dataSource type="mytest.config.DruidDataSourceFactory">
+        <property name="druid.driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="druid.url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="druid.username" value="root"/>
+        <property name="druid.password" value="root"/>
       </dataSource>
+    </environment>
+    <environment id="production">
+      <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+              <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+              <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+              <property name="username" value="root"/>
+              <property name="password" value="root"/>
+            </dataSource>
     </environment>
   </environments>
   <mappers>

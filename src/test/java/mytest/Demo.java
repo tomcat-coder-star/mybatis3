@@ -22,11 +22,14 @@ public class Demo {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         // 获取sqlSession, 事务自动提交
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
+        // 设置分页
+        RowBounds rowBounds = new RowBounds(3, 3);
         // 查询数据
-        List<User> objects = sqlSession.selectList("findAllUser");
+        List<User> objects = sqlSession.selectList("findAllUser",null,rowBounds);
         System.out.println("objects = " + objects);
         // 执行添加数据
-        int addUser = sqlSession.insert("addUser", new User("77","tom","23","11111@qq.com"));
-        System.out.println("addUser = " + addUser);
+//        int addUser = sqlSession.insert("addUser", new User("77","tom","23","11111@qq.com"));
+//        System.out.println("addUser = " + addUser);
+        sqlSession.close();
       }
 }
